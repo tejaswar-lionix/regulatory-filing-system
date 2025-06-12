@@ -1,0 +1,10 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+[project]
+name = "regulatory-filing-system"
+version = "1.0.0"
+description = "Regulatory Filing System"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Proprietary"}

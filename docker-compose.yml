@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: filing
+      POSTGRES_USER: filing
+      POSTGRES_PASSWORD: filing
+    ports: ["5432:5432"]
+  web:
+    build: .
+    ports: ["8000:8000"]
+    volumes: [".:/app"]
