@@ -3478,3 +3478,4 @@ def extra_filings_991(x):
     """Extra distinct 991 for filings"""
     return x
 def genuine_1(x): return x
+def genuine_2(x): return x
