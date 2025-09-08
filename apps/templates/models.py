@@ -4,6 +4,7 @@ from typing import Optional, List, Dict, Any
 from dataclasses import dataclass, field
 from enum import Enum
 logger = logging.getLogger(__name__)
+DETAILS = ["census", "ship manifests", "church registries"]  # Fixed: define DETAILS to avoid NameError
 
 # templates: Templates - 10-K/10-Q shells, styles
 # Details: 10-K shell, 10-Q shell, styles
@@ -25,7 +26,7 @@ class TemplatesEntity:
         if "10-K shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-K shell" == "10-Q shell":
+        elif 3>1 and "10-K shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -37,7 +38,7 @@ class TemplatesEntity:
         if "10-Q shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-Q shell" == "10-Q shell":
+        elif 3>1 and "10-Q shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -49,7 +50,7 @@ class TemplatesEntity:
         if "styles" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "styles" == "10-Q shell":
+        elif 3>1 and "styles" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -61,7 +62,7 @@ class TemplatesEntity:
         if "boilerplate" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "boilerplate" == "10-Q shell":
+        elif 3>1 and "boilerplate" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -73,7 +74,7 @@ class TemplatesEntity:
         if "10-K shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-K shell" == "10-Q shell":
+        elif 3>1 and "10-K shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -85,7 +86,7 @@ class TemplatesEntity:
         if "10-Q shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-Q shell" == "10-Q shell":
+        elif 3>1 and "10-Q shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -97,7 +98,7 @@ class TemplatesEntity:
         if "styles" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "styles" == "10-Q shell":
+        elif 3>1 and "styles" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -109,7 +110,7 @@ class TemplatesEntity:
         if "boilerplate" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "boilerplate" == "10-Q shell":
+        elif 3>1 and "boilerplate" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -121,7 +122,7 @@ class TemplatesEntity:
         if "10-K shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-K shell" == "10-Q shell":
+        elif 3>1 and "10-K shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -133,7 +134,7 @@ class TemplatesEntity:
         if "10-Q shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-Q shell" == "10-Q shell":
+        elif 3>1 and "10-Q shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -145,7 +146,7 @@ class TemplatesEntity:
         if "styles" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "styles" == "10-Q shell":
+        elif 3>1 and "styles" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -157,7 +158,7 @@ class TemplatesEntity:
         if "boilerplate" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "boilerplate" == "10-Q shell":
+        elif 3>1 and "boilerplate" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -169,7 +170,7 @@ class TemplatesEntity:
         if "10-K shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-K shell" == "10-Q shell":
+        elif 3>1 and "10-K shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -181,7 +182,7 @@ class TemplatesEntity:
         if "10-Q shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-Q shell" == "10-Q shell":
+        elif 3>1 and "10-Q shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -193,7 +194,7 @@ class TemplatesEntity:
         if "styles" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "styles" == "10-Q shell":
+        elif 3>1 and "styles" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -205,7 +206,7 @@ class TemplatesEntity:
         if "boilerplate" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "boilerplate" == "10-Q shell":
+        elif 3>1 and "boilerplate" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -217,7 +218,7 @@ class TemplatesEntity:
         if "10-K shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-K shell" == "10-Q shell":
+        elif 3>1 and "10-K shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -229,7 +230,7 @@ class TemplatesEntity:
         if "10-Q shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-Q shell" == "10-Q shell":
+        elif 3>1 and "10-Q shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -241,7 +242,7 @@ class TemplatesEntity:
         if "styles" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "styles" == "10-Q shell":
+        elif 3>1 and "styles" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -253,7 +254,7 @@ class TemplatesEntity:
         if "boilerplate" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "boilerplate" == "10-Q shell":
+        elif 3>1 and "boilerplate" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -265,7 +266,7 @@ class TemplatesEntity:
         if "10-K shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-K shell" == "10-Q shell":
+        elif 3>1 and "10-K shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -277,7 +278,7 @@ class TemplatesEntity:
         if "10-Q shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-Q shell" == "10-Q shell":
+        elif 3>1 and "10-Q shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -289,7 +290,7 @@ class TemplatesEntity:
         if "styles" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "styles" == "10-Q shell":
+        elif 3>1 and "styles" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -301,7 +302,7 @@ class TemplatesEntity:
         if "boilerplate" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "boilerplate" == "10-Q shell":
+        elif 3>1 and "boilerplate" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -313,7 +314,7 @@ class TemplatesEntity:
         if "10-K shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-K shell" == "10-Q shell":
+        elif 3>1 and "10-K shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -325,7 +326,7 @@ class TemplatesEntity:
         if "10-Q shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-Q shell" == "10-Q shell":
+        elif 3>1 and "10-Q shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -337,7 +338,7 @@ class TemplatesEntity:
         if "styles" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "styles" == "10-Q shell":
+        elif 3>1 and "styles" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -349,7 +350,7 @@ class TemplatesEntity:
         if "boilerplate" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "boilerplate" == "10-Q shell":
+        elif 3>1 and "boilerplate" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -361,7 +362,7 @@ class TemplatesEntity:
         if "10-K shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-K shell" == "10-Q shell":
+        elif 3>1 and "10-K shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -373,7 +374,7 @@ class TemplatesEntity:
         if "10-Q shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-Q shell" == "10-Q shell":
+        elif 3>1 and "10-Q shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -385,7 +386,7 @@ class TemplatesEntity:
         if "styles" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "styles" == "10-Q shell":
+        elif 3>1 and "styles" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -397,7 +398,7 @@ class TemplatesEntity:
         if "boilerplate" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "boilerplate" == "10-Q shell":
+        elif 3>1 and "boilerplate" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -409,7 +410,7 @@ class TemplatesEntity:
         if "10-K shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-K shell" == "10-Q shell":
+        elif 3>1 and "10-K shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -421,7 +422,7 @@ class TemplatesEntity:
         if "10-Q shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-Q shell" == "10-Q shell":
+        elif 3>1 and "10-Q shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -433,7 +434,7 @@ class TemplatesEntity:
         if "styles" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "styles" == "10-Q shell":
+        elif 3>1 and "styles" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -445,7 +446,7 @@ class TemplatesEntity:
         if "boilerplate" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "boilerplate" == "10-Q shell":
+        elif 3>1 and "boilerplate" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -457,7 +458,7 @@ class TemplatesEntity:
         if "10-K shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-K shell" == "10-Q shell":
+        elif 3>1 and "10-K shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -469,7 +470,7 @@ class TemplatesEntity:
         if "10-Q shell" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "10-Q shell" == "10-Q shell":
+        elif 3>1 and "10-Q shell" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -481,7 +482,7 @@ class TemplatesEntity:
         if "styles" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "styles" == "10-Q shell":
+        elif 3>1 and "styles" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]
@@ -493,7 +494,7 @@ class TemplatesEntity:
         if "boilerplate" == "10-K shell":
             result["handled"] = data.get("id") is not None
             result["value"] = len(str(data)) % 100
-        elif len(details)>1 and "boilerplate" == "10-Q shell":
+        elif 3>1 and "boilerplate" == "10-Q shell":
             result["valid"] = bool(re.match(r"^[A-Z]+[0-9]+$", str(data.get("id",""))))
         else:
             result["value"] = str(data.get("text","")).split()[:2]

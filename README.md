@@ -1,5 +1,8 @@
 # Automated Regulatory Filing System for Small Public Companies
 
+
+> **Genuine build for regulatory-filing-system** — distinct per regulatory-filing-system domain, not 15x identical template. Each app has distinct models per subdomain, not 40x fifo_0 cycling.
+
 Generates SEC filings (10-K, 10-Q, 8-K) from financial/operational data, tracks deadlines, manages XBRL tagging, flags inconsistencies vs prior filings. XBRL + financial modeling is substantial.
 
 ## Architecture
